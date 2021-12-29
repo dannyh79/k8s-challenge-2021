@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-app-service
+  name: board-app-service
 spec:
   selector:
-    app: nginx
+    app: board
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 4000

@@ -1,19 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-app-deployment
+  name: board-app-deployment
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: board
   replicas: 2 # tells deployment to run 2 pods matching the template
   template:
     metadata:
       labels:
-        app: nginx
+        app: board
     spec:
       containers:
-      - name: nginx
-        image: nginx:latest
+      - name: board
+        # change the app image here
+        image: dannyh79/phx-board-app:0.1.0
         ports:
-        - containerPort: 80
+        - containerPort: 4000
+        env:
+        - name: PHX_HOST
+          value: "k8s-challenge.chenghsuan.me"
+        - name: PORT
+          value: "4000"
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: app-postgres-secret
+              key: password
+        - name: DATABASE_URL
+          value: "postgres://app:$(DATABASE_PASSWORD)@postgres/app_prod"
+        - name: SECRET_KEY_BASE
+          valueFrom:
+            secretKeyRef:
+              name: app-secret-key-base
+              key: password
