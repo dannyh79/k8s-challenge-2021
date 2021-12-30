@@ -1,0 +1,13 @@
+<h1>Show Memo</h1>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @memo.title %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.memo_path(@conn, :edit, @memo) %></span> |
+<span><%= link "Back", to: Routes.memo_path(@conn, :index) %></span>

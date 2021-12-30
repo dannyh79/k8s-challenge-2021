@@ -1,0 +1,26 @@
+<h1>Listing Memos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for memo <- @memos do %>
+    <tr>
+      <td><%= memo.title %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.memo_path(@conn, :show, memo) %></span>
+        <span><%= link "Edit", to: Routes.memo_path(@conn, :edit, memo) %></span>
+        <span><%= link "Delete", to: Routes.memo_path(@conn, :delete, memo), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Memo", to: Routes.memo_path(@conn, :new) %></span>

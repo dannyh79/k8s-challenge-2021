@@ -1,0 +1,5 @@
+<h1>Edit Memo</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.memo_path(@conn, :update, @memo)) %>
+
+<span><%= link "Back", to: Routes.memo_path(@conn, :index) %></span>
